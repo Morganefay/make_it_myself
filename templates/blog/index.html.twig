@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="top">
+                <h1>Les  Articles</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laborum, officia
+                    delectus corrupti modi natus?</p>
+            </div>
+            <!-- inclustion des articles -->
+            <main>
+                <!-- On parcours le tableau $posts qui contient l'ensemble des articles-->
+                {%  for post in posts %}
+                    <!--Pour chaque article... -->
+                    <div class="singleBlog">
+                        <img src="/uploads/{{ post.image }}" alt="{{ post.title }}" class="blogImg">
+                        <div class="blogContent">
+                            <h3>{{ post.title }}</h3>
+                            <p>By <a href="#">{{ post.user.fullname }}</a> | <a href="#"></a>{{ post.createdAt | date('d/m/Y') }}</p>
+                            <a href="{{ path('post.index', {'slug':post.slug}) }}" class="btn">Lire</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </main>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Bientot | Make it Myself !{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- core CSS -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        <!-- CSS personnelles globales -->
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/domino.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+<section id="domino">
+    <div class="artboard">
+        <div class="domino">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="container">
+
+        <h1>Cette Page est presque prête !</h1>
+        <p>encore un peu de patience!</p>
+        <div class="blogContent">
+            <a href="{{ path('home') }}" class="btn">Retour à l'Accueil</a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

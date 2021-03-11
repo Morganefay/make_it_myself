@@ -1,0 +1,12 @@
+.alert{
+    text-align: center;
+}
+.alert-fail{
+    color: red;
+}
+
+.message-success{
+    text-align: center;
+    font-weight: bold;
+    color: green;
+}

@@ -1,0 +1,6 @@
+<div>
+    <div> {{ comment.user.firstname }} {{ comment.user.lastname }} </div>
+    <div class="commentContent"> {{ comment.content }} </div>
+    <div class="date"> le {{ comment.createdAt|date('d/m/Y') }} à {{ comment.createdAt|date('H:i', 'Europe/Paris') }} </div>
+</div>
+---------------------------------------------------------------------------

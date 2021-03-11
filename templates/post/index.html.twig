@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title}}{% endblock %}
+
+
+{# {% block stylesheets %}
+    {{  parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
+    <link href="{{ asset('css/post.css') }}" rel="stylesheet">
+
+{% endblock %} #}
+
+{% block content %}
+    {# <!-- Inclusion du template de la modal de confirmation d'ajout de commentaire -->
+    {% include 'modals/_success.html.twig' with {'message':'Commentaire ajouté avec succès !', 'id':'add-comment-success-modal'} %} #}
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card">
+                    <img src="/uploads/{{ post.image }}" alt="{{ post.title }}">
+                    <div class="card-body">
+
+                        <h5 class="card-title"> {{ post.title }} </h5>
+                        <div> {{ post.content|raw }} </div>
+                        <small> {{ post.user.fullname }} </small>
+                        <div class="date"> {{ post.createdAt | date('d/m/Y') }} </div>
+                        <div class="category"> {{ post.category.name }} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Commentaires</h4>
+        {% if is_granted('ROLE_USER') %}
+            <div class="card my-4">
+                <h5 class="card-header">Laissez un commentaire:</h5>
+                <div class="card-body">
+                    {{ form_start(form, {'attr':{'id':'comment-form'}}) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Envoyer mon commentaire">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        {% else %}
+            <p><a href="{{ path('app_login') }}">Connectez-vous</a> pour ajouter un commentaire.</p>
+        {% endif %}
+
+
+        <!-- List of comments -->
+        {% if post.comments|length == 0 %}
+            <p>Soyez le premier à commenter cet article !</p>
+        {% else %}
+            {%  for comment in post.comments %}
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert message-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <div class="commentContainer">
+                    <div>{{ comment.user.firstname }} {{ comment.user.lastname }}</div>
+                    <div class="commentContent"> {{ comment.content }} </div>
+                    <div class="date"> le {{ comment.createdAt|date('d/m/Y') }} à {{ comment.createdAt|date('H:i', 'Europe/Paris') }} </div>
+                </div>
+                ---------------------------------------------------------------------------
+            {% endfor %}
+        {%  endif %}
+    </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+{{ parent() }}
+    {#
+<!-- Bootstrap core JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+            crossorigin="anonymous"></script>
+
+<!-- Script personnel pour la parge Article -->
+<script src="{{ asset('assets/js/post.js') }}"></script>#}
+
+{% endblock %}

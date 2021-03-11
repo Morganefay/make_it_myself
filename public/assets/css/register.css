@@ -1,0 +1,200 @@
+/*** register form ****/
+h1{
+    color: rgb(75, 36, 73);
+    margin: 0 15px;
+    text-transform: uppercase;
+}
+#register{
+    width: 50%;
+    margin: 0 auto 60px;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+label {
+    text-decoration: underline;
+}
+
+#register input{
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    margin: 10px 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.register-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+button#register_submit{
+    display: block;
+    padding: 14px 0;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ddd;
+    background: #3e2943;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 8px 0;
+    width: 100%;
+    height: 50px;
+    transition: opacity .3s linear;
+}
+
+button#register_submit:hover{
+    opacity: .7;
+}
+#register li {
+    list-style-type: none;
+    color: red;
+}
+
+/*** end form ***/
+
+/*** texte défilant ***/
+.separator{
+    padding: 25px 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.defileParent {
+    display: block;
+    margin: 1em auto;
+    overflow: hidden;
+    position: relative;
+    table-layout: fixed;
+    width: 700px;
+}
+.defile {
+    display:block;
+    -webkit-animation:linear marqueelike 20s infinite ;
+    -moz-animation:linear marqueelike 20s infinite ;
+    -o-animation:linear marqueelike 20s infinite ;
+    -ms-animation:linear marqueelike 20s infinite ;
+    animation:linear marqueelike 20s infinite ;
+    margin-left:-100%;
+    padding:0 5px;
+    text-align:left;
+    height:25px;
+}
+
+.defile:after {
+    content:attr(data-text);
+    position:absolute;
+    white-space:nowrap;
+    padding-left:10px;
+}
+
+@-webkit-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+}
+@-webkit-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+}
+@-moz-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+}
+@-o-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+}
+@-ms-keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+}
+@keyframes marqueelike {
+    0%, 100% {margin-left:0;}
+    99.99% {margin-left:-100%;}
+}
+/*** fin animation **/
+
+/*** connexion ****/
+#signIn{
+    width: 50%;
+    margin: 0 auto 60px;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.button {
+    display: block;
+    padding: 14px 0;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ddd;
+    background: #3e2943;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 8px 0;
+    width: 100%;
+    height: 50px;
+    transition: opacity .3s linear;
+}
+
+.button:hover {
+    opacity: .7;
+}
+
+.signIn-contents {
+    height: 300px;
+    width: 500px;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.signIn-field {
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    margin: 10px 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.signIn {
+    margin-top: 5px;
+}
+
+.logo-cnx {
+    color: rgb(75, 36, 73);
+    margin: 0 10px;
+}
+
+/*** end ***/
+/*** if connected **/
+.connected {
+    width: 60%;
+    text-align: center;
+    margin: 100px auto;
+    padding: 40px;
+    background: #f1f1f1;
+}
+
+/** media queries **/
+@media screen and (max-width:800px){
+    #register, #signIn{
+        width: 100%;
+    }
+    .separator{
+        display: none;
+    }
+}

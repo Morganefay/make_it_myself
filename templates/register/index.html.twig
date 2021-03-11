@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription | Make it Myself !{% endblock %}
+{% block content %}
+    <div class="register-title">
+        <div class="logo-cnx">
+            <i class="fas fa-cut fa-2x"></i>
+            <i class="fas fa-mitten fa-2x"></i>
+        </div>
+        <h1>Inscription</h1>
+        <div class="logo-cnx">
+            <i class="fas fa-pencil-ruler fa-2x"></i>
+            <i class="fas fa-leaf fa-2x"></i>
+        </div>
+    </div>
+
+    <section class="separator">
+        <div class="defileParent">
+            <span class="defile" data-text=" Rejoignez vite notre communauté de créateurs, pour trouver de bonnes idées ou partagez vos astuces !">
+                Rejoignez vite notre communauté de créateurs, pour trouver de bonnes idées ou partagez vos astuces !
+            </span>
+        </div>
+    </section>
+
+
+    <!--methode twig 'form'et je lui passe ma variable form du RegisterController-->
+    {{ form(form) }}
+
+{% endblock %}

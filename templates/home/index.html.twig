@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+
+    <section>
+        <div class="container">
+            <div class="top">
+                <h1>Une communauté de créateurs</h1>
+                <p>Tissage, poterie, couture, tricot, macramé, cosmétique maison, zéro déchets, recettes
+                    anti-gaspi, upcycling, occuper tes enfants.... Bref tout ce que tu peux faire avec tes
+                    mains ! Si tu cherches des idées créatives ou veux partager les
+                    tiennes, tu es au bon endroit !</p>
+            </div>
+
+
+            <article>
+                <div class="singleBlog">
+                    <img src="{{ asset('assets/img/post/blog.png') }}" alt="lien vers le blog" class="blogImg">
+                    <div class="blogContent">
+
+                        <a href="{{ path( 'blog') }}" class="btn">Voir</a>
+                    </div>
+                </div>
+                <div class="singleBlog">
+                    <img src="{{ asset('assets/img/post/forum.png') }}" alt="lien vers le forum" class="blogImg">
+                    <div class="blogContent">
+                        <a href="{{ path( 'forum') }}" class="btn">GO!</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+
+    <section>
+        <div class="container">
+            <div class="top">
+                <h1>Les Derniers Articles</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laborum, officia
+                    delectus corrupti modi natus?</p>
+            </div>
+            <!-- inclustion des articles -->
+            <main>
+                <!-- On parcours le tableau $posts qui contient l'ensemble des articles-->
+                {%  for post in posts %}
+                    <!--Pour chaque article... -->
+                    <div class="singleBlog">
+                        <img src="/uploads/{{ post.image }}" alt="{{ post.title }}" class="blogImg">
+                        <div class="blogContent">
+                            <h3>{{ post.title }}</h3>
+                            <p>By <a href="#">{{ post.user.fullname }}</a> | <a href="#"></a>{{ post.createdAt | date('d/m/Y') }}</p>
+                            <a href="{{ path('post.index', {'slug':post.slug}) }}" class="btn">Lire</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </main>
+        </div>
+
+        <div class="seemore">
+            <a href="{{ path('blog') }}" class="seemore-btn">Voir plus</a>
+        </div>
+    </section>
+
+
+
+    <!-- feed instagram-->
+   <!-- <section>
+        <div class="container">
+            <div class="top">
+                <h2>#Suis moi sur Instagram</h2>
+
+                <div id="instafeed">
+                    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+                    <div class="elfsight-app-daf72b1a-9e69-4bff-8b43-c54eff1c5fff"></div>
+                </div>
+                <p>Pour ne pas en perdre une miette !</p>
+            </div>
+
+        </div>
+    </section>-->
+{% endblock %}

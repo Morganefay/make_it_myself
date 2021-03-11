@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte | Make it Myself !{% endblock %}
+
+{% block content %}
+    <h1>Mon Compte</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <small><a href="#">Vous êtes un administrateur. Accéder au backoffice ?</a></small><br/>
+    {% endif %}
+
+    <p>Vous ëtes avec nous depuis le: {{ app.user.createdAt | date('d/m/Y') }}</p>
+    <div class="connected">
+        <p> Bonjour <span class="connected-pseudo">{{ app.user.firstname }}</span> !</p>
+        <p>Vous êtes connectez avec l'adresse : <span class="connected-mail">{{ app.user.username }}</span></p>
+
+        <div class="account">
+            <div class="account-task">
+                <div class="account-item">
+                    <img src="{{ asset('assets/img/notebook.png') }}" alt="icone adresses"><br/>
+                    <a href="#">Gérer mes informations</a>
+                </div>
+            </div>
+            <div class="account-task">
+                <div class="account-item">
+                    <img src="{{ asset('assets/img/password.png') }}" alt="icone mot de passe"><br/>
+                    <a href="{{ path('account_password')}}">Modifier mon mot de passe</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <a href="{{ path('home') }}">Retourner à la page d'accueil</a> || <a href="{{ path('app_logout') }}">Se déconnecter</a>
+    </div>
+
+{% endblock %}

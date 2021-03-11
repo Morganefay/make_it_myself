@@ -1,19 +1,99 @@
 <!DOCTYPE html>
+<html lang="fr">
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Make it Myself !{% endblock %}</title>
+    {% block stylesheets %}
+        <!--  core CSS -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        <!-- CSS personnelles globales -->
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/register.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/message.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<body>
+
+<nav    {% if block('banner') is not defined %}style="margin-bottom: 15px" {% endif %}>
+    <div class="logo">
+        <h4>Make it myself</h4>
+    </div>
+    <ul class="nav-links">
+        <li><a href="{{ path('home') }}">Accueil</a></li>
+        <li><a href="{{ path( 'blog') }}">Blog</a></li>
+        <li><a href="{{ path( 'forum') }}">Forum</a></li>
+        <li><a href="{{ path( 'about') }}">A propos</a></li>
+        <li><a href="{{ path( 'account') }}">Mon Compte</a></li>
+        <li>
+            <a href="{{ path('app_login') }}" id="button" class="btncnx">
+                <i class="fas fa-user-circle fa-2x"></i>
+                {% if app.user %}
+                    {{ app.user.firstname }}
+                {% else %}
+                    Connexion
+                {% endif %}
+            </a>
+        </li>
+    </ul>
+    <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+</nav>
+
+<!--Affichage de la banner modulable-->
+{% if block('banner') is defined %}
+    <img src="{{ asset('assets/img/post/test_banner2.png') }}" class="banner">
+{% endif %}
+
+
+<!-- chargement dynamique des pages -->
+{% block content %}
+
+
+{% endblock %}
+
+<footer>
+    <div class="footer-container">
+        <div class="left-col">
+
+            <img src="{{ asset('assets/img/profil2.jpg') }}" alt="image de profil" class="profil">
+
+            <div class="social">
+                <a href="https://www.facebook.com/Petites-Luxures-290170661336430/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/marievoirin/"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.pinterest.fr/"><i class="fab fa-pinterest-p"></i></a>
+                <a href="https://www.ravelry.com/"><i class="fab fa-ravelry"></i></a>
+            </div>
+            <p class="rights-text"> &copy; 2020 Created by Marie C. All Rights Reserved.</p>
+        </div>
+
+        <div class="right-col">
+            <h1>La Newsletter</h1>
+            <div class="border"></div>
+            <p class="p-text">Entrez votre adresse mail pour recevoir les dernières news !</p>
+            <form action="" class="newsletter-form">
+                <input type="email" class="txtb" placeholder="Entrez votre Email">
+                <input type="submit" class="btn-newsletter" value="s'abonner">
+            </form>
+            <a class="contact" href="{{  path('about') }}">Contactez moi !</a>
+        </div>
+    </div>
+
+</footer>
+
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous"></script>
+    <!-- Script personnel global -->
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+{% endblock %}
+</body>
 </html>
