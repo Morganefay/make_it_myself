@@ -7,6 +7,9 @@
     {% if error %}
         <div class="alert alert-fail">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
 
     {% if app.user %}
         <div class="connected">
@@ -52,6 +55,7 @@
             #}
 
             <input type="submit" class="button" value="Connexion">
+            <a href="{{ path('reset_password') }}"><em class="signIn">Mot de passe oublié</em></a> |
             <a href="{{ path('register') }}"><em class="signIn">Pas encore inscrit ?</em></a>
         </form>
     </div>

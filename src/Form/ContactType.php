@@ -18,25 +18,31 @@ class ContactType extends AbstractType
             ->add('prenom', TextType::class, [
                 'label'=> 'Votre prénom',
                 'attr' => [
-                    'placeholder' => 'Merci de saisir votre prénom'
+                    'placeholder' => 'Entrez votre prénom'
                 ]
             ])
             ->add('nom', TextType::class, [
                 'label'=> 'Votre nom',
                 'attr' => [
-                    'placeholder' => 'Merci de saisir votre nom'
+                    'placeholder' => 'Entrez votre nom'
+                ]
+            ])
+            ->add('sujet', TextType::class, [
+                'label'=> 'Sujet de votre message',
+                'attr' => [
+                    'placeholder' => 'Sujet de votre message'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'label'=> 'Votre email',
                 'attr' => [
-                    'placeholder' => 'Merci de saisir votre email'
+                    'placeholder' => 'Entrez votre email'
                 ]
             ])
             ->add('content', TextareaType::class, [
                 'label'=> 'Votre message',
                 'attr' => [
-                    'placeholder' => 'En quoi pouvons nous vous aider ?'
+                    'placeholder' => 'En quoi puis-je vous aider ?'
                 ]
             ])
             ->add('submit', SubmitType::class , [

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié | Make it Myself !{% endblock %}
+
+{% block content %}
+    {% for message in app.flashes('success')%}
+        <div class="alert message-success">{{ message }}</div>
+    {% endfor %}
+
+        <h1>Réinitialiser mon mot de passe</h1>
+        <div id="signIn">
+            <form method="post">
+                <label for="inputEmail">Email</label>
+                <input type="email" value="" name="email" id="inputEmail" class="signIn-field" placeholder="votre adresse email" required autofocus>
+
+                <input type="submit" class="button" value="Réinitialiser">
+                <a href="{{ path('app_login') }}"><em class="signIn">Vous connecter ?</em></a>
+            </form>
+        </div>
+
+{% endblock %}

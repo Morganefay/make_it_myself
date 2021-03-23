@@ -2,23 +2,51 @@
 
 namespace App\Controller;
 
+use App\Classe\Search;
+use App\Entity\Post;
+use App\Form\SearchType;
 use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager){
+
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @Route("/blog", name="blog")
+     * @param PostRepository $postRepository
+     * @param Request $request
+     * @return Response
      */
-    public function index(PostRepository $postRepository): Response
+    public function index(PostRepository $postRepository, Request $request): Response
     {
-        $posts = $postRepository->findAll();
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $posts =$this->entityManager->getRepository(Post::class)->findWithSearch($search);
+        }else{
+            $posts = $this->entityManager->getRepository(Post::class)->findAll();
+        }
+
 
         // Rendu du template Twig
         return $this->render('blog/index.html.twig', [
-            'posts' => $posts
+            'posts' => $posts,
+            'form' => $form->createView()
         ]);
     }
 }

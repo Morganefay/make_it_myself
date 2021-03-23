@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page introuvable | Make it Myself !{% endblock %}
+
+{% block content %}
+        <div class="connected">
+            <h2>Page introuvable !</h2>
+            <p>Désolé cette page ne semble pas être accessible pour le moment...</p>
+            <a href="{{ path('home') }}" class="button">Retourner à la page d'accueil</a>
+        </div>
+{% endblock %}

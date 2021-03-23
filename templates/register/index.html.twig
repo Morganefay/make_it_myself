@@ -2,6 +2,11 @@
 
 {% block title %}Inscription | Make it Myself !{% endblock %}
 {% block content %}
+
+    {% for message in app.flashes('success')%}
+        <div class="alert message-success">{{ message }}</div>
+    {% endfor %}
+
     <div class="register-title">
         <div class="logo-cnx">
             <i class="fas fa-cut fa-2x"></i>

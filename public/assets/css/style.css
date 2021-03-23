@@ -1,8 +1,10 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    border:0 none; 
+    box-sizing:border-box;
 }
+/* *,*:before,*:after {box-sizing:inherit;} */
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -89,8 +91,9 @@ img.banner {
 
 .nav-links {
     display: flex;
-    justify-content: space-around;
-    width: 48%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50%;
 }
 
 .nav-links a {
@@ -119,16 +122,12 @@ img.banner {
 }
 
 /******* main ********/
+    /**affichage de la grille des articles **/
 
-p a {
+.blogContent p a {
     transition: all .5s;
     text-decoration: none;
     color: #fff;
-}
-
-.blogImg {
-    width: 100%;
-    transition: all .5s;
 }
 
 section {
@@ -158,6 +157,13 @@ article {
     margin: 30px 15px 0px 15px;
 }
 
+
+#grid-blog {
+    display: grid;
+	grid-template-columns: repeat(auto-fill,minmax(calc(8rem + 5vw + 5vh),1fr));
+	grid-gap: 2.5vmin;
+	padding: 2.5vmin;
+}
 .top {
     width: 70%;
     margin: 0 auto;
@@ -177,23 +183,11 @@ article {
 .singleBlog {
     position: relative;
     overflow: hidden;
+    background-color: greenyellow;
     max-height: 580px;
-    height: 100%;
-    box-sizing: border-box;
     box-shadow: 0 2px 10px #ccc;
     transition: all .5s;
 }
-
-.singleBlog:hover {
-    box-shadow: 0 2px 13px #ccc;
-    transition: all .5s;
-}
-
-.singleBlog:hover img {
-    transform: scale(1.1);
-    transition: all .4s;
-}
-
 .blogContent {
     position: absolute;
     left: 0;
@@ -228,8 +222,11 @@ article {
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
+    text-decoration: none;
 }
-
+.blogContent a:hover{
+    text-decoration: none;
+}
 .blogContent .btn {
     display: inline-block;
     padding: 5px 10px;
@@ -247,9 +244,75 @@ article {
 }
 
 .blogContent a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
+.fa-heart {
+    color: darkred;
+}
+span.js-likes {
+    color: white;
+}
+
+.blogImg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+	box-shadow: 0 0 3px #496b7b;
+	border-radius: 5px;
+    transition: all .5s;
+}
+.singleBlog:hover {
+    box-shadow: 0 2px 13px #ccc;
+    transition: all .5s;
+}
+
+.singleBlog:hover img {
+    transform: scale(1.1);
+    transition: all .4s;
+}
+
+
+/** gallery **/
+.singleBlog:first-child {
+    grid-row-start: span 2;
+    grid-column-start: span 3;	
+}
+.singleBlog:nth-child(2n+3) {
+    grid-row-start: span 1;
+}
+.singleBlog:nth-child(4n+5) {
+    grid-column-start: span 3;
+	grid-row-start: span 2;
+}
+.singleBlog:nth-child(6n+7) {
+    grid-row-start: span 3;
+    grid-column-start: span 2;
+}
+.singleBlog:nth-child(8n+9) {
+    grid-column-start: span 2;
+    grid-row-start: span 3;
+}
+
+.singleBlog::after {
+	background: rgba(0,0,0,.5);
+	position: absolute;
+	top: 0%;
+	left: 0;
+	font-size: 2rem;
+	color: #c6d9d3;
+	width: 4rem;
+	height: 4rem;
+	line-height: 4rem;
+	text-align: center;	
+}
+
+.singleBlog,
+img {
+	transition: .4s;
+}
+/** voir plus sur la home page **/
 .seemore{
     display: flex;
     /* padding: 14px 0; */
@@ -261,7 +324,7 @@ article {
     text-transform: uppercase;
     cursor: pointer;
     margin: 40px auto 0px;
-    width: 20%;
+    width: 120px;
     height: 50px;
     transition: opacity .3s linear;
 }
@@ -276,6 +339,27 @@ article {
 .seemore:hover{
     opacity: .7;
 }
+
+    /** about page **/
+#about {
+    display: flex;
+    justify-content: space-around;
+}
+.about-text {
+    width: 50%;
+    text-align: initial;
+}
+.about-text p {
+    margin-top: 10px;
+}
+.about-img {
+    width: 100%;
+    margin: auto;
+}
+img.about-profil {
+    width: 60%;
+}
+/**** end about ****/
 /****** footer ****/
 
 footer {
@@ -284,17 +368,20 @@ footer {
 }
 
 .footer-container {
-    max-width: 1300px;
+    width: 100%;
     margin: auto;
     padding: 0 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap-reverse;
 }
-
+.picture {
+    display: flex;
+    flex-direction: column;
+}
 .profil {
-    width: 200px;
+    width: 250px;
 }
 
 .social {
@@ -313,57 +400,17 @@ footer {
     color: rgb(214, 113, 214);
 }
 
-.right-col h1 {
-    font-size: 26px;
-}
-
 .border {
     width: 100px;
     height: 4px;
     background: rgb(75, 36, 73);
 }
-
-.p-text {
-    margin: 20px 0;
+.right-col {
+    width: 45%;
 }
-
-.newsletter-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+p.rights-text {
+    text-align: center;
 }
-
-.txtb {
-    flex: 1;
-    padding: 18px 40px;
-    font-size: 16px;
-    color: #293043;
-    background: #ddd;
-    border: none;
-    font-weight: 700;
-    outline: none;
-    min-width: 260px;
-}
-
-.btn-newsletter {
-    padding: 18px 40px;
-    font-size: 16px;
-    color: #ddd;
-    background: #3e2943;
-    border: none;
-    text-transform: uppercase;
-    outline: none;
-    margin-left: 20px;
-    cursor: pointer;
-    transition: opacity .3s linear;
-}
-
-.btn-newsletter:hover {
-    opacity: .7;
-}
-
 .contact {
     text-decoration: none;
     color: #293043;
@@ -374,6 +421,8 @@ footer {
 .contact:hover {
     color: rgb(214, 113, 214);
 }
+/****end footer****/
+
 /** mon compte **/
 .connected-pseudo{
     text-transform: capitalize;
@@ -381,48 +430,19 @@ footer {
 .connected-mail{
     font-weight: bold;
 }
-.account {
-    display: flex;
-    justify-content: space-between;
-    /* border: 1px solid grey; */
+#account {
+   /* display: flex;
+    justify-content: space-between;*/
     margin: 20px;
 }
 .account-task {
-    border: 1px solid grey;
+    border: 2px solid rgb(225, 225, 230);
     margin: 20px;
+    padding: 40px;
 }
-
-/****
-#submitnews {
-    width: 300px;
-    height: 30px;
-    border: 1px solid black;
-    color: white;
-    background-color: black;
-    cursor: pointer;
-}
-
-#submitnews:hover {
-    color: black;
-    background-color: white;
-    border: 4px solid black;
-}
-******/
-
-
-/****end footer****/
-
-
-/**** about ****/
 
 
 /*** responsive *****/
-
-@media screen and (max-width:1024px) {
-    .nav-links {
-        width: 60%;
-    }
-}
 
 @media (max-width:992px) {
     main {
@@ -439,6 +459,15 @@ footer {
     .left-col {
         width: 100%;
         text-align: center;
+    }
+    #about{
+        display: block;
+    }
+    .about-text{
+        width: 100%;
+    }
+    .profil{
+        margin: auto;
     }
 }
 
@@ -494,10 +523,11 @@ footer {
         margin-top: 20px;
     }
 
+
 }
 
 @media (max-width:500px) {
-    main {
+    main , #grid-blog{
         grid-template-columns: repeat(1, 1fr);
     }
     article {

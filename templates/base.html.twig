@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <!-- CSS personnelles globales -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/css/register.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/forms.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/message.css') }}" rel="stylesheet">
     {% endblock %}
 </head>
@@ -29,14 +29,12 @@
         <li><a href="{{ path( 'about') }}">A propos</a></li>
         <li><a href="{{ path( 'account') }}">Mon Compte</a></li>
         <li>
-            <a href="{{ path('app_login') }}" id="button" class="btncnx">
-                <i class="fas fa-user-circle fa-2x"></i>
                 {% if app.user %}
-                    {{ app.user.firstname }}
+                    <a href="{{ path('account') }}">{{ app.user.firstname }}</a> | <a href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
-                    Connexion
+                    <a href="{{ path('app_login') }}">Connexion</a> | <a href="{{ path('register') }}">Inscription</a>
                 {% endif %}
-            </a>
+
         </li>
     </ul>
     <div class="burger">
@@ -61,39 +59,41 @@
 <footer>
     <div class="footer-container">
         <div class="left-col">
-
-            <img src="{{ asset('assets/img/profil2.jpg') }}" alt="image de profil" class="profil">
-
+            <div class="picture">
+                <a class="contact" href="{{  path('about') }}">Contactez moi !</a>
+                <img src="{{ asset('assets/img/profil2.jpg') }}" alt="image de profil" class="profil">
+            </div>
             <div class="social">
                 <a href="https://www.facebook.com/Petites-Luxures-290170661336430/"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/marievoirin/"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.pinterest.fr/"><i class="fab fa-pinterest-p"></i></a>
                 <a href="https://www.ravelry.com/"><i class="fab fa-ravelry"></i></a>
             </div>
-            <p class="rights-text"> &copy; 2020 Created by Marie C. All Rights Reserved.</p>
+            <p class="rights-text"> &copy; 2021 Created by Marie C. All Rights Reserved.</p>
         </div>
 
         <div class="right-col">
-            <h1>La Newsletter</h1>
+            <!--Widget MailJet-->
             <div class="border"></div>
-            <p class="p-text">Entrez votre adresse mail pour recevoir les dernières news !</p>
-            <form action="" class="newsletter-form">
-                <input type="email" class="txtb" placeholder="Entrez votre Email">
-                <input type="submit" class="btn-newsletter" value="s'abonner">
-            </form>
-            <a class="contact" href="{{  path('about') }}">Contactez moi !</a>
+            <iframe class="mj-w-res-iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://app.mailjet.com/widget/iframe/6mf7/I9c" width="100%"></iframe>
         </div>
     </div>
 
 </footer>
 
 {% block javascripts %}
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
             integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
             crossorigin="anonymous"></script>
     <!-- Script personnel global -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    {# <script src="{{ asset('assets/js/post.js') }}"></script> #}
+    <script src="{{ asset('assets/js/like.js') }}"></script>
+    {# <script src="{{ asset('assets/js/filters.js') }}"></script> #}
+    <script type="text/javascript" src="https://app.mailjet.com/statics/js/iframeResizer.min.js"></script>
 {% endblock %}
 </body>
 </html>

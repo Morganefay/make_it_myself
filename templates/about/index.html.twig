@@ -1,24 +1,44 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}A propos | Make it Myself !{% endblock %}
 {% block banner %}{% endblock %}
 
 {% block content %}
 
-    <h2>Nous contacter</h2>
-    <p>N hésitez pas à prendre contact avec notre équipe</p>
-    {% for message in app.flashes('success')%}
-        <div class="alert message-success">{{ message }}</div>
-    {% endfor %}
-    <div class="row">
-        <div class="col-md-8">{{ form(form) }}</div>
-        <div class="col-md-4">
-            <strong>Marie C</strong>
-            <hr>
-            06 20 30 40 50<br/>
-            12 route du petit chemin<br/>
-            13720 Aubagne<br/>
-            contact@mim.fr
+    <section>
+        <div id="about">
+            <div class="about-img">
+                <img src="{{ asset('assets/img/profil2.jpg') }}" alt="image de profil" class="about-profil">
+            </div>
+            <div class="about-text">
+                <h1>A propos de moi</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laborum, officia
+                    delectus corrupti modi natus?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laborum, officia
+                    delectus corrupti modi natus?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laborum, officia
+                    delectus corrupti modi natus?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laborum, officia
+                    delectus corrupti modi natus?
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Maecenas malesuada tortor in lorem tincidunt, quis hendrerit sapien pharetra.
+                    Cras nec nisl egestas, rutrum ante sit amet, consectetur sapien. Vivamus condimentum eleifend diam
+                    rhoncus. Etiam tincidunt et justo ac cursus. Fusce condimentum nisl sit amet ex vehicula accumsan.
+                    Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce tincidunt iaculis nibh id tristique.
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <h1>Me contacter</h1>
+
+        {% for message in app.flashes('success')%}
+            <div class="alert message-success">{{ message }}</div>
+        {% endfor %}
+        <div class="contact-form">
+            <div>
+                <p class="contact_text">N hésitez pas à me poser vos questions !</p>
+                {{ form(form) }}
+            </div>
         </div>
     </div>
-
 {% endblock %}

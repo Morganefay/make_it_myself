@@ -13,7 +13,6 @@ jQuery(function($){
             'contentType': false,
             'success': html => {
                 $('.commentContainer').prepend(html);
-                $('#add-comment-success-modal').modal('show');
                 $('#comment-form').trigger('reset');
             }
         });

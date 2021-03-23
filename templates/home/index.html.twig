@@ -40,11 +40,13 @@
         <div class="container">
             <div class="top">
                 <h1>Les Derniers Articles</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse laborum, officia
-                    delectus corrupti modi natus?</p>
+                <p>The woods are lovely, dark and deep,
+                    But I have promises to keep,
+                    And miles to go before I sleep,
+                    And miles to go before I sleep.</p>
             </div>
             <!-- inclustion des articles -->
-            <main>
+            <main id="grid-blog">
                 <!-- On parcours le tableau $posts qui contient l'ensemble des articles-->
                 {%  for post in posts %}
                     <!--Pour chaque article... -->
@@ -52,8 +54,17 @@
                         <img src="/uploads/{{ post.image }}" alt="{{ post.title }}" class="blogImg">
                         <div class="blogContent">
                             <h3>{{ post.title }}</h3>
-                            <p>By <a href="#">{{ post.user.fullname }}</a> | <a href="#"></a>{{ post.createdAt | date('d/m/Y') }}</p>
+                            <p>By <a href="{{ path('about')}}">{{ post.user.fullname }}</a> | <a href="#"></a>{{ post.createdAt | date('d/m/Y') }}</p>
                             <a href="{{ path('post.index', {'slug':post.slug}) }}" class="btn">Lire</a>
+                            <a href="{{ path('post_like',{'slug':post.slug}) }}" class="js-like">
+                                <!-- si un post est aimé par l'utilisateur connecté il apparait plein -->
+                                {% if app.user and post.isLikedByUser(app.user) %}
+                                    <i class="fas fa-heart"></i>
+                                {% else %}
+                                    <i class="far fa-heart"></i>
+                                {% endif %}
+                                <span class="js-likes">{{ post.likes | length }}</span>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

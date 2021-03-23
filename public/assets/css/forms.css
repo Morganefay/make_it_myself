@@ -3,8 +3,9 @@ h1{
     color: rgb(75, 36, 73);
     margin: 0 15px;
     text-transform: uppercase;
+    text-align: center;
 }
-#register{
+#register, #contact{
     width: 50%;
     margin: 0 auto 60px;
     background-color: #f1f1f1;
@@ -17,7 +18,7 @@ label {
     text-decoration: underline;
 }
 
-#register input{
+#register input, #contact input{
     width: 100%;
     height: 50px;
     border: none;
@@ -34,7 +35,7 @@ label {
     margin: 15px 0;
 }
 
-button#register_submit{
+button#register_submit, button#contact_submit, .button{
     display: block;
     padding: 14px 0;
     font-size: 16px;
@@ -50,7 +51,7 @@ button#register_submit{
     transition: opacity .3s linear;
 }
 
-button#register_submit:hover{
+button#register_submit:hover, button#contact_submit:hover{
     opacity: .7;
 }
 #register li {
@@ -121,29 +122,13 @@ button#register_submit:hover{
 /*** fin animation **/
 
 /*** connexion ****/
-#signIn{
+#signIn, #change_password,#reset_password{
     width: 50%;
     margin: 0 auto 60px;
     background-color: #f1f1f1;
     text-align: center;
     padding: 20px;
     border-radius: 4px;
-}
-
-.button {
-    display: block;
-    padding: 14px 0;
-    font-size: 16px;
-    text-decoration: none;
-    color: #ddd;
-    background: #3e2943;
-    border: none;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin: 8px 0;
-    width: 100%;
-    height: 50px;
-    transition: opacity .3s linear;
 }
 
 .button:hover {
@@ -160,7 +145,7 @@ button#register_submit:hover{
     border-radius: 4px;
 }
 
-.signIn-field {
+.signIn-field , .change_password_field,.reset_password_field{
     width: 100%;
     height: 50px;
     border: none;
@@ -178,7 +163,18 @@ button#register_submit:hover{
     color: rgb(75, 36, 73);
     margin: 0 10px;
 }
+/** contact **/
+textarea#contact_content {
+    width: 100%;
+    height: 120px;
+    border: none;
+    font-family: 'Poppins';
+}
 
+p.contact_text {
+    text-align: center;
+    margin-bottom: 10px;
+}
 /*** end ***/
 /*** if connected **/
 .connected {
@@ -191,7 +187,7 @@ button#register_submit:hover{
 
 /** media queries **/
 @media screen and (max-width:800px){
-    #register, #signIn{
+    #register, #signIn, #contact, #change_password,#reset_password, .connected{
         width: 100%;
     }
     .separator{

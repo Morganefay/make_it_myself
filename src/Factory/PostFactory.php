@@ -40,7 +40,8 @@ final class PostFactory extends ModelFactory
             'image' => "https://picsum.photos/seed/post-" . rand(0,500) . "/750/750",
             'createdAt' => self::faker()->dateTimeBetween('-2 years', 'now', 'Europe/Paris'),
             'category' => CategoryFactory::random(),
-            'user' => UserFactory::findOrCreate(['email' => 'admin@admin.com'])
+            'user' => UserFactory::findOrCreate(['email' => 'admin@admin.com']),
+
         ];
     }
 

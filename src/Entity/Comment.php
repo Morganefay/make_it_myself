@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -42,6 +44,26 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="replies")
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="parent")
+     */
+    private $replies;
+
+    public function __construct()
+    {
+        $this->replies = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -95,6 +117,60 @@ class Comment
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getReplies(): Collection
+    {
+        return $this->replies;
+    }
+
+    public function addReply(self $reply): self
+    {
+        if (!$this->replies->contains($reply)) {
+            $this->replies[] = $reply;
+            $reply->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(self $reply): self
+    {
+        if ($this->replies->removeElement($reply)) {
+            // set the owning side to null (unless already changed)
+            if ($reply->getParent() === $this) {
+                $reply->setParent(null);
+            }
+        }
 
         return $this;
     }
