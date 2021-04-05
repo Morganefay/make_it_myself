@@ -23,7 +23,6 @@ class UserPasswordEncoderSubscriber implements EventSubscriberInterface
             $hashedPassword = $this->encoder->encodePassword($user, $plainTextPassword);
             $user->setPassword($hashedPassword);
         }
-
     }
 
     public static function getSubscribedEvents()

@@ -3,43 +3,45 @@
 {% block banner %}{% endblock %}
 
 {% block content %}
-    <section>
+    <section class="section-blog">
         <div class="container">
-        <div class="col-md-3">
-            <h2>Filtrer</h2>
-            {{ form_start(form, {'attr':{'id':'filters'}}) }}
-
-            <div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none">
-                <span class="sr-only">Loading...</span>
-            </div>
-
-            {{ form_row(form.string) }}
-
-            <h4>Catégories</h4>
-            {{ form_row(form.categories) }}
-
-            {{ form_end(form) }}
-        </div>
             <div class="top">
                 <h1>Les  Articles</h1>
+            </div>
+            <!-- filtres de catégories -->
+            <div class="filters-form">
+                {{ form_start(form, {'attr':{'id':'filters'}}) }}
+
+                {#  <div class="spinner-border js-loading" role="status" aria-hidden="true" style="display: none">
+                <span class="sr-only">Loading...</span>
+            </div> #}
+
+                {{ form_row(form.string) }}
+
+                {{ form_row(form.categories) }}
+
+                {{ form_end(form) }}
+            </div>
+            <div class="top">
                 <p>The woods are lovely, dark and deep,
                     But I have promises to keep,
                     And miles to go before I sleep,
                     And miles to go before I sleep.</p>
             </div>
+
             <!-- inclustion des articles -->
             <div id="grid-blog">
                 <!-- On parcours le tableau $posts qui contient l'ensemble des articles-->
                 {%  for post in posts %}
                     <!--Pour chaque article... -->
                     <div class="singleBlog">
-                        <img src="{{ post.image }}" alt="{{ post.title }}" class="blogImg">
+                        <img src="{{ post.image }}" alt="{{ post.imgDescription }}" class="blogImg">
                         <div class="blogContent">
                             <h3>{{ post.title }}</h3>
                             <p>By <a href="{{ path('about')}}">{{ post.user.fullname }}</a> | <a href="#"></a>{{ post.createdAt | date('d/m/Y') }}</p>
                             <a href="{{ path('post.index', {'slug':post.slug}) }}" class="btn">Lire</a>
 
-                            <a href="{{ path('post_like',{'slug':post.slug}) }}" class="js-like">
+                            <a href="{{ path('post_like',{'slug':post.slug}) }}" class="js-like" data-tooltip="Vous devez être connecté pour aimer cet article">
                                 <!-- si un post est aimé par l'utilisateur connecté il apparait plein -->
                                 {% if app.user and post.isLikedByUser(app.user) %}
                                     <i class="fas fa-heart"></i>

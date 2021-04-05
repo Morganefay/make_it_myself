@@ -1,4 +1,4 @@
-//Logique de controlle des Likes
+//Logique de controle des Likes
 
 function onClickBtnLike(event){
     //on évite de suivre le lien
@@ -6,6 +6,7 @@ function onClickBtnLike(event){
     //$this est le a sur lequel on clique
     const url = this.href ;
     const spanCount = this.querySelector('span.js-likes');
+    //const tooltip = this.querySelector('.tooltip');
     const icone = this.querySelector('i');
 
     axios.get(url).then(function (response) {
@@ -16,7 +17,9 @@ function onClickBtnLike(event){
         else icone.classList.replace('far','fas');
     }).catch(function(error) {
        if(error.response.status === 403) {
-           window.alert("Vous devez être connecté pour liker cet article !");
+           document.querySelectorAll('.js-like').forEach( el => {
+             el.classList.add('tooltip');
+           })
        }else {
            window.alert("Ooops ! Une erreur s'est produite!")
        }

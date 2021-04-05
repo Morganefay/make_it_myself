@@ -37,6 +37,7 @@ final class PostFactory extends ModelFactory
         return [
             'title' => self::faker()->sentence(),
             'content' => self::faker()->text(1500),
+            'imgDescription' => self::faker()->text(200),
             'image' => "https://picsum.photos/seed/post-" . rand(0,500) . "/750/750",
             'createdAt' => self::faker()->dateTimeBetween('-2 years', 'now', 'Europe/Paris'),
             'category' => CategoryFactory::random(),

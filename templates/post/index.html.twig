@@ -16,17 +16,17 @@
         <div>
             <div>
                 <div class="post">
-                    <img src="/uploads/{{ post.image }}" class="post-image" alt="{{ post.title }}">
+                    <img src="{{ post.image }}" class="post-image" alt="{{ post.imgDescription }}">
                     <div class="post-body">
 
                         <h1 class="post-title"> {{ post.title }} </h1>
                         <div> {{ post.content|raw }} </div>
-                        <div class="author"><small> {{ post.user.fullname }} </small></div>
+                        <div class="author"><small> {{ post.user.alias }} </small></div>
                         <div class="date"> {{ post.createdAt | date('d/m/Y') }} </div>
                         <div class="category"> Catégorie : {{ post.category.name }} </div>
                         <div class="post-like">
                             <p>Vous aimez cet Article ?</p>
-                            <a href="{{ path('post_like',{'slug':post.slug}) }}" class="js-like">
+                            <a href="{{ path('post_like',{'slug':post.slug}) }}" class="js-like" data-tooltip="Vous devez être connecté pour aimer cet article">
                                 <!-- si un post est aimé par l'utilisateur connecté il apparait plein -->
                                 {% if app.user and post.isLikedByUser(app.user) %}
                                     <i class="fas fa-heart"></i>
@@ -52,16 +52,17 @@
             {%  for comment in post.comments %}
                 {% if comment.parent == null %}
                     <div class="commentContainer">
-                        <div><strong>Commentaire de {{ comment.user.firstname }} {{ comment.user.lastname }}</strong></div>
+                        <div><strong>Commentaire de {{ comment.user.alias }} </strong></div>
                         <div class="date"> <small>le {{ comment.createdAt|date('d/m/Y') }} à {{ comment.createdAt|date('H:i', 'Europe/Paris') }}</small> </div>
                         <div class="commentContent"> {{ comment.content }} </div>
                         <!-- création du lien de réponse au commentaire -->
-                        <p><a href="#add-comment" data-reply data-id="{{ comment.id }}"><small>Répondre</small></a></p>
-
+                        <div class="response">
+                        <p><a href="#add-comment" {% if app.user %} data-reply data-id="{{ comment.id }}" {% else %} data-tooltip="Vous devez être connecté pour aimer cet article" class="tooltip" {% endif %}><small>Répondre</small></a></p>
+                        </div>
                         {# on affiche les réponses #}
                         {% for reply in comment.replies %}
                             <div class="commentResponse">
-                                <div><strong><small>Réponse publiée par: </small>{{ reply.user.firstname }} {{ reply.user.lastname }}</strong></div>
+                                <div><strong><small>Réponse publiée par: </small>{{ reply.user.alias }} </strong></div>
                                 <div class="date"> <small>le {{ reply.createdAt|date('d/m/Y') }} à {{ reply.createdAt|date('H:i', 'Europe/Paris') }}</small> </div>
                                 <div class="commentContent"> {{ reply.content }} </div>
                             </div>

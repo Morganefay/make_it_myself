@@ -15,8 +15,8 @@
     <p><span class="connected-mail">Vous êtes avec nous depuis le:</span> {{ app.user.createdAt | date('d/m/Y') }}</p>
     <div class="connected">
         <p> Bonjour <span class="connected-pseudo">{{ app.user.firstname }}</span> !</p>
-        <p>Vous êtes connectez avec l'adresse : <span class="connected-mail">{{ app.user.username }}</span></p>
-
+        <p>Vous êtes connecté avec l'adresse : <span class="connected-mail">{{ app.user.username }}</span></p>
+        <p>Sous le pseudo : <span class="connected-mail">{{ app.user.alias }}</span> </p>
         <div id="account">
             <div class="account-task">
                 <div class="account-item">
@@ -24,14 +24,14 @@
                     <a href="{{ path('account_password')}}">Modifier mon mot de passe</a>
                 </div>
             </div>
-            {#
+
             <div class="account-task">
                 <div class="account-item">
-                    <img src="{{ asset('assets/img/notebook.png') }}" alt="icone adresses"><br/>
-                    <a href="#">Gérer mes informations</a>
+                    <img src="{{ asset('assets/img/notebook.png') }}" alt="icone informations"><br/>
+                    <a href="{{ path('account_info')}}">Gérer mes informations</a>
                 </div>
             </div>
-            #}
+
         </div>
         <a href="{{ path('app_logout') }}">Se déconnecter</a> || <a href="{{ path('home') }}">Retourner à la page d'accueil</a>
     </div>

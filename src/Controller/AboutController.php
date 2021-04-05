@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Header;
 use App\Form\ContactType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AboutController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager){
+
+        $this->entityManager = $entityManager;
+    }
     /**
      * @Route("/a-propos", name="about")
      * @param Request $request
@@ -20,6 +28,8 @@ class AboutController extends AbstractController
      */
     public function index(Request $request, MailerInterface $mailer): Response
     {
+        $headers = $this->entityManager->getRepository(Header::class)->findAll();
+
         $form = $this->createForm(ContactType::class);
         $contact = $form->handleRequest($request);
 
@@ -46,7 +56,8 @@ class AboutController extends AbstractController
 
         }
         return $this->render('about/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'headers' => $headers
         ]);
     }
 }

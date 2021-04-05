@@ -25,6 +25,7 @@ class PostCrudController extends AbstractCrudController
         return [
             TextField::new('title','Titre'),
             DateField::new('createdAt', 'Posté le')->hideOnForm(),
+            TextField::new('img_description', 'Description de l\'image'),
             ImageField::new('image')
                 ->setBasePath('uploads/')
                 ->setUploadDir('public/uploads')

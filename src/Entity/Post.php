@@ -70,6 +70,11 @@ class Post
      */
     private $likes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imgDescription;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -243,5 +248,17 @@ class Post
             if($like->getUser() === $user) return true;
         }
         return false;
+    }
+
+    public function getImgDescription(): ?string
+    {
+        return $this->imgDescription;
+    }
+
+    public function setImgDescription(string $imgDescription): self
+    {
+        $this->imgDescription = $imgDescription;
+
+        return $this;
     }
 }

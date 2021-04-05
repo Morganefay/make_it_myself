@@ -21,81 +21,18 @@ nav {
     align-items: center;
     min-height: 8vh;
 }
-
-
-/* test dropdown */
-
-
-/*nav:after {
-    content: '';
-    clear: both;
-    display: table;
-}
-
-nav ul ul {
-    position: absolute;
-    top: 30px;
-    opacity: 0;
-    visibility: hidden;
-    transition: top .3s;
-}
-
-nav ul li:hover>ul {
-    top: 40px;
-    opacity: 1;
-    visibility: visible;
-}
-
-nav ul ul li {
-    position: relative;
-    margin: 0px;
-    width: 150px;
-    display: list-item;
-    background-color: rgb(167, 143, 143);
-    opacity: 1;
-    z-index: 2;
-    border-bottom: 1px solid rgba(226, 223, 223, 0.3);
-}
-
-nav ul ul ul li {
-    position: relative;
-    top: -70px;
-    left: 150px;
-}
-
-nav ul ul li a {
-    line-height: 50px;
-}
-
-a.sublinks {
-    color: white !important;
-}
-
-a.subsublinks {
-    color: whitesmoke !important;
-}*/
-
-
-/***fin dropdown **/
-
-img.banner {
-    width: 100%;
-}
-
 .logo {
     color: rgb(167, 143, 143);
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 20px;
 }
-
 .nav-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 50%;
 }
-
 .nav-links a {
     color: rgb(167, 143, 143);
     text-decoration: none;
@@ -103,9 +40,12 @@ img.banner {
     font-weight: bold;
     font-size: 14px;
 }
-
 .nav-links li {
     list-style: none;
+}
+
+img.banner {
+    width: 100%;
 }
 
 .burger {
@@ -124,7 +64,7 @@ img.banner {
 /******* main ********/
     /**affichage de la grille des articles **/
 
-.blogContent p a {
+.blogContent p a , .blogContentHome p a {
     transition: all .5s;
     text-decoration: none;
     color: #fff;
@@ -180,15 +120,14 @@ article {
     color: rgba(52, 73, 94, 1.0);
 }
 
-.singleBlog {
+.singleBlog, .singleBlogHome {
     position: relative;
     overflow: hidden;
-    background-color: greenyellow;
     max-height: 580px;
     box-shadow: 0 2px 10px #ccc;
     transition: all .5s;
 }
-.blogContent {
+.blogContent, .blogContentHome {
     position: absolute;
     left: 0;
     bottom: -45px;
@@ -199,18 +138,18 @@ article {
     transition: all .5s;
 }
 
-.singleBlog:hover .blogContent {
+.singleBlog:hover .blogContent, .singleBlogHome:hover .blogContentHome {
     bottom: 0;
     transition: all .5s;
 }
 
-.blogContent h3 {
+.blogContent h3, .blogContentHome h3 {
     font-size: 20px;
     font-weight: 500;
     margin: 0;
 }
 
-.blogContent h3 span {
+.blogContent h3 span, .blogContentHome h3 span {
     display: block;
     font-size: 60%;
     margin-top: 5px;
@@ -218,16 +157,16 @@ article {
     color: rgba(52, 73, 94, 1.0)
 }
 
-.blogContent a {
+.blogContent a, .blogContentHome a {
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
     text-decoration: none;
 }
-.blogContent a:hover{
+.blogContent a:hover, .blogContentHome a:hover{
     text-decoration: none;
 }
-.blogContent .btn {
+.blogContent .btn, .blogContentHome .btn  {
     display: inline-block;
     padding: 5px 10px;
     border: 1px solid #fff;
@@ -237,13 +176,13 @@ article {
     color: #fff;
 }
 
-.blogContent .btn:hover {
+.blogContent .btn:hover, .blogContentHome .btn:hover {
     background: rgba(123, 81, 143, 0.3);
     transition: all .5s;
     text-decoration: none;
 }
 
-.blogContent a:hover {
+.blogContent a:hover, .blogContentHome a:hover {
     text-decoration: none;
 }
 
@@ -253,7 +192,48 @@ article {
 span.js-likes {
     color: white;
 }
+/**tooltip**/
+.tooltip::before,
+.tooltip::after{
+    --scale: 0;
+    --arrow-size: 10px;
+    --tooltip-color: #3e2943;
 
+    position: absolute;
+    top: 3.75rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: bottom center;
+    text-transform: lowercase;
+}
+
+.tooltip::before{
+    --translate-y: calc(-100% - var(--arrow-size));
+
+    content: attr(data-tooltip);
+    color: white;
+    padding: .5rem;
+    border-radius: .3rem;
+    text-align: center;
+    width: max-content;
+    max-width: 100%;
+    background: var(--tooltip-color);
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after{
+    --scale: 1;
+}
+.tooltip::after{
+    --translate-y: calc(-1 * var(--arrow-size));
+
+    content: '';
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
+}
+/** end tooltip **/
 .blogImg {
 	width: 100%;
 	height: 100%;
@@ -263,12 +243,12 @@ span.js-likes {
 	border-radius: 5px;
     transition: all .5s;
 }
-.singleBlog:hover {
+.singleBlog:hover, .singleBlogHome:hover {
     box-shadow: 0 2px 13px #ccc;
     transition: all .5s;
 }
 
-.singleBlog:hover img {
+.singleBlog:hover img, .singleBlogHome:hover img {
     transform: scale(1.1);
     transition: all .4s;
 }
@@ -308,7 +288,7 @@ span.js-likes {
 	text-align: center;	
 }
 
-.singleBlog,
+.singleBlog, .singleBlogHome,
 img {
 	transition: .4s;
 }
@@ -348,6 +328,7 @@ img {
 .about-text {
     width: 50%;
     text-align: initial;
+    margin-right: 20px;
 }
 .about-text p {
     margin-top: 10px;
@@ -421,6 +402,16 @@ p.rights-text {
 .contact:hover {
     color: rgb(214, 113, 214);
 }
+.legals li{
+    list-style-type: none;
+}
+.legals a {
+    color:  rgb(75 36 73);
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 14px;
+}
 /****end footer****/
 
 /** mon compte **/
@@ -439,6 +430,13 @@ p.rights-text {
     border: 2px solid rgb(225, 225, 230);
     margin: 20px;
     padding: 40px;
+}
+.avatar {
+    width: 10%;
+    height: auto;
+}
+.avatar img{
+    width: 100%;
 }
 
 
@@ -511,10 +509,16 @@ p.rights-text {
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 15px;
     }
+    #grid-blog{
+        display: block;
+    }
+    .singleBlog{
+        margin-bottom: 15px;
+    }
     .top {
         width: 95%;
     }
-    .blogContent {
+    .blogContent, .blogContentHome {
         bottom: 0;
     }
     .btn-newsletter {
@@ -527,7 +531,7 @@ p.rights-text {
 }
 
 @media (max-width:500px) {
-    main , #grid-blog{
+    main{
         grid-template-columns: repeat(1, 1fr);
     }
     article {
@@ -555,11 +559,9 @@ p.rights-text {
 .toggle .line1 {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
-
 .toggle .line2 {
     opacity: 0;
 }
-
 .toggle .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
 }

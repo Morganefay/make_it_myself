@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de mes informations | Make it Myself !{% endblock %}
+
+{% block content %}
+    <h1>Modifier mes informations</h1>
+
+    <img src="{{ asset('uploads/avatar/profil-vide.jpg') }}" alt="avatar" class="profil">
+    <p>{{ app.user.firstname }}</p>
+    <p> changer mon pseudo</p>
+    <p>changer mon avatar </p>
+
+    <a href="{{ path('account') }}">Retourner à mon compte</a>
+
+{% endblock %}

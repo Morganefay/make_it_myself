@@ -29,7 +29,6 @@ class RegisterController extends AbstractController
      */
     public function index(Request $request): Response
     {
-
         //j'instancie mon formulaire : createForm prend deux parametres
         // => la Class de mon Formulaire et l'objet
         $form = $this->createForm(RegisterType::class );

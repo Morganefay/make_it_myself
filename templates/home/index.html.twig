@@ -17,16 +17,16 @@
 
 
             <article>
-                <div class="singleBlog">
+                <div class="singleBlogHome">
                     <img src="{{ asset('assets/img/post/blog.png') }}" alt="lien vers le blog" class="blogImg">
-                    <div class="blogContent">
+                    <div class="blogContentHome">
 
                         <a href="{{ path( 'blog') }}" class="btn">Voir</a>
                     </div>
                 </div>
-                <div class="singleBlog">
+                <div class="singleBlogHome">
                     <img src="{{ asset('assets/img/post/forum.png') }}" alt="lien vers le forum" class="blogImg">
-                    <div class="blogContent">
+                    <div class="blogContentHome">
                         <a href="{{ path( 'forum') }}" class="btn">GO!</a>
                     </div>
                 </div>
@@ -46,17 +46,17 @@
                     And miles to go before I sleep.</p>
             </div>
             <!-- inclustion des articles -->
-            <main id="grid-blog">
+            <main>
                 <!-- On parcours le tableau $posts qui contient l'ensemble des articles-->
                 {%  for post in posts %}
                     <!--Pour chaque article... -->
-                    <div class="singleBlog">
-                        <img src="/uploads/{{ post.image }}" alt="{{ post.title }}" class="blogImg">
-                        <div class="blogContent">
+                    <div class="singleBlogHome">
+                        <img src="{{ post.image }}" alt="{{ post.imgDescription }}" class="blogImg">
+                        <div class="blogContentHome">
                             <h3>{{ post.title }}</h3>
                             <p>By <a href="{{ path('about')}}">{{ post.user.fullname }}</a> | <a href="#"></a>{{ post.createdAt | date('d/m/Y') }}</p>
                             <a href="{{ path('post.index', {'slug':post.slug}) }}" class="btn">Lire</a>
-                            <a href="{{ path('post_like',{'slug':post.slug}) }}" class="js-like">
+                            <a href="{{ path('post_like',{'slug':post.slug}) }}" class="js-like" data-tooltip="Vous devez être connecté pour aimer cet article">
                                 <!-- si un post est aimé par l'utilisateur connecté il apparait plein -->
                                 {% if app.user and post.isLikedByUser(app.user) %}
                                     <i class="fas fa-heart"></i>
@@ -79,7 +79,7 @@
 
 
     <!-- feed instagram-->
-   <!-- <section>
+   {#  <section>
         <div class="container">
             <div class="top">
                 <h2>#Suis moi sur Instagram</h2>
@@ -92,5 +92,5 @@
             </div>
 
         </div>
-    </section>-->
+    </section> #}
 {% endblock %}

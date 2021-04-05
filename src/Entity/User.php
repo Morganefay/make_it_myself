@@ -70,6 +70,12 @@ class User implements UserInterface
      */
     private $likes;
 
+    /**
+     * @ORM\Column(type="string", length=60)
+     */
+    private $alias;
+
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -264,4 +270,17 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getAlias(): ?string
+    {
+        return $this->alias;
+    }
+
+    public function setAlias(string $alias): self
+    {
+        $this->alias = $alias;
+
+        return $this;
+    }
+
 }

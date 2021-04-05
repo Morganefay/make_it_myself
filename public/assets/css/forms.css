@@ -18,7 +18,7 @@ label {
     text-decoration: underline;
 }
 
-#register input, #contact input{
+#register input, #contact input, #search_string{
     width: 100%;
     height: 50px;
     border: none;
@@ -35,7 +35,7 @@ label {
     margin: 15px 0;
 }
 
-button#register_submit, button#contact_submit, .button{
+button#register_submit, button#contact_submit, .button, #search_submit{
     display: block;
     padding: 14px 0;
     font-size: 16px;
@@ -51,7 +51,7 @@ button#register_submit, button#contact_submit, .button{
     transition: opacity .3s linear;
 }
 
-button#register_submit:hover, button#contact_submit:hover{
+button#register_submit:hover, button#contact_submit:hover, #search_submit:hover{
     opacity: .7;
 }
 #register li {
@@ -184,6 +184,51 @@ p.contact_text {
     padding: 40px;
     background: #f1f1f1;
 }
+
+/*** filtre categories ***/
+
+.section-blog{
+    margin: 0;
+}
+form#filters {
+    display: flex;
+    justify-content: space-evenly;
+}
+#filters #search_categories{
+    width: 100%;
+    font-size: 20px;
+}
+
+form#filters div:nth-child(2){
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#search_categories label {
+    text-decoration: none;
+    margin-right: 10%;
+    color: #3e2943;
+}
+
+#search_categories input{
+    width: 20px;
+}
+
+.filters-form {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+#search_submit{
+    width: 120px;
+}
+
+
+
+/** end filtre ***/
 
 /** media queries **/
 @media screen and (max-width:800px){
