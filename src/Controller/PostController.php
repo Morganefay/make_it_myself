@@ -116,7 +116,6 @@ class PostController extends AbstractController
         //si l'utilisateur n'est pas connecté renvoi une erreur
         $user = $this->getUser();
         if(!$user) return $this->json(['code' => 403, 'message' => 'Unauthorized'], 403);
-
         //si l'article est déja aimé je veux le supprimer
         if($post->isLikedByUser($user)){
             $like = $likeRepository->findOneBy([
@@ -133,7 +132,6 @@ class PostController extends AbstractController
                 'likes' => $likeRepository->count(['post'=> $post])
             ], 200);
         }
-
         //si l'article n'est PAS encore aimé par l'utilisateur
         $like = new PostLike();
         $like->setPost($post)->setUser($user);

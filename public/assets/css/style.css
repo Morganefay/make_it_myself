@@ -495,6 +495,7 @@ p.rights-text {
         width: 100%;
         transform: translateX(-100%);
         transition: transform 0.5s ease-in;
+        justify-content: space-around;
     }
     .nav-links a {
         color: rgb(231, 225, 225);

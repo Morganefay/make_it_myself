@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +9,7 @@
         <!-- Bootstrap core CSS -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+        {# <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> #}
         <!-- CSS personnelles globales -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/carousel.css') }}" rel="stylesheet">
@@ -49,8 +48,8 @@
 
 <!--Affichage de la banner modulable-->
 {% if block('banner') is defined %}
-    {# <img src="{{ asset('assets/img/post/test_banner2.png') }}" class="banner"> #}
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+     <img src="{{ asset('assets/img/post/test_banner2.png') }}" class="banner">
+{#<div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for key,header in headers %}
                 <li data-target="#myCarousel" data-slide-to="{{ key }}" {% if key == 0 %}class="active"{% endif %}></li>
@@ -78,7 +77,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
+    </div>#}
 {% endif %}
 
 
@@ -127,7 +126,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
             integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
             crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
+    {#  <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script> #}
     <!-- Script personnel global -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
     {# <script src="{{ asset('assets/js/post.js') }}"></script> #}

@@ -231,11 +231,22 @@ form#filters div:nth-child(2){
 /** end filtre ***/
 
 /** media queries **/
-@media screen and (max-width:800px){
+@media (max-width:800px){
     #register, #signIn, #contact, #change_password,#reset_password, .connected{
         width: 100%;
     }
     .separator{
         display: none;
+    }
+    form#filters {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    form#filters div:nth-child(2){
+        width: 100%;
+    }
+    #filters #search_categories{
+        font-size: 16px;
     }
 }
